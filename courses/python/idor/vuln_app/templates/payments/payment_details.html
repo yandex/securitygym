@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Payment Details{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h1>Payment {{ payment.id }}</h1>
+    <ul>
+        <li>Amount: {{ payment.amount }}</li>
+        <li>Description: {{ payment.description }}</li>
+    </ul>
+{% endblock %}

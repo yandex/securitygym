@@ -1,0 +1,6 @@
+.DS_Store
+.idea/
+.pytest_cache/
+*.sqlite
+__pycache__/
+*.pyc

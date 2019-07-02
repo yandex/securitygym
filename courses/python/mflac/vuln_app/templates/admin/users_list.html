@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Admin Panel: Users{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr><th>ID</th><th>Username</th><th>Is Admin</th></tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ 'Yes' if user.is_admin else 'No' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

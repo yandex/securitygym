@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Add Payment{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="amount">Amount</label>
+        <input type="number" name="amount" id="amount" value="0" step="0.01" required>
+        <label for="description">Description</label>
+        <input name="description" id="description" required>
+        <input type="submit" value="Add payment">
+    </form>
+{% endblock %}

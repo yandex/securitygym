@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}My payments{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr><th>ID</th><th>Amount</th></tr>
+        {% for payment in payments %}
+        <tr>
+            <td><a href="{{ url_for('payments.view_payment', payment_id=payment.id)}}">{{ payment.id }}</a></td>
+            <td>{{ payment.amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('payments.add_payment') }}">Add payment</a>
+{% endblock %}

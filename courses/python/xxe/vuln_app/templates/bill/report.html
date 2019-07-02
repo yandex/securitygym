@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Bill report{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr><th>Name</th><th>Quantity</th><th>Price</th><th>Cost</th></tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.price*product.quantity }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><b>TOTAL:</b></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><b>{{ total_cost }}</b></td>
+        </tr>
+    </table>
+{% endblock %}

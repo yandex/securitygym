@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Articles{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Search</h2>
+    <form method="post">
+        <label for="title">Title</label>
+        <input name="title" id="title">
+        <div>
+            <input type="radio" id="orderChoice1" name="order" value="DESC" checked>
+            <label for="orderChoice1">New first</label>
+            <input type="radio" id="orderChoice2" name="order" value="ASC">
+            <label for="orderChoice2">Old first</label>
+        </div>
+        <input type="submit" value="Search">
+    </form>
+    {% for article in articles %}
+    <div>
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.content }}</p>
+        <p><i><small>{{ article.created_at }}</small></i></p>
+    </div>
+    {% endfor %}
+{% endblock %}
