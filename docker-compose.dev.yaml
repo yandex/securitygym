@@ -1,0 +1,26 @@
+version: '3'
+services:
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile.dev
+    networks:
+      - web_nw
+    volumes:
+      - ./api/src:/app
+      - ./courses:/courses
+    restart: always
+  proxy:
+    build:
+      context: proxy
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - api
+    ports:
+      - "8000:80"
+    networks:
+      - web_nw
+    restart: always
+networks:
+  web_nw:
+    driver: bridge
