@@ -1,5 +1,15 @@
 version: '3'
 services:
+  ui:
+    build:
+      context: ui
+      dockerfile: Dockerfile.dev
+    networks:
+      - web_nw
+    volumes:
+      - ./ui/react-ui:/app
+      - node_modules:/app/node_modules
+    restart: always
   api:
     build:
       context: api
@@ -15,6 +25,7 @@ services:
       context: proxy
       dockerfile: Dockerfile.dev
     depends_on:
+      - ui
       - api
     ports:
       - "8000:80"
@@ -24,3 +35,6 @@ services:
 networks:
   web_nw:
     driver: bridge
+volumes:
+  node_modules:
+    

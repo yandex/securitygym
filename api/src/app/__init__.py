@@ -13,6 +13,6 @@ def create_app():
         SECRET_KEY = settings.SECRET_KEY
     )
 
-    app.register_blueprint(courses.bp, url_prefix='/api')
+    app.register_blueprint(courses.bp)
 
     return app
