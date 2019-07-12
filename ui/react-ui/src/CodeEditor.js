@@ -8,15 +8,26 @@ import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-python";
 
 class CodeEditor extends React.Component {
+
+    selectLanguage(language) {
+      switch(language) {
+        case "python":
+          return languages.python;
+        default:
+          return languages.javascript;
+      }
+    }
+
     constructor(props) {
       super(props);
       this.state = {
-        code: props.code
+        code: props.code,
+        language: this.selectLanguage(props.language)
       };
     }
 
     componentWillReceiveProps(nextProps) {
-      this.setState({code: nextProps.code});
+      this.setState({code: nextProps.code, language: this.selectLanguage(nextProps.language)});
     }
 
     render() {
@@ -32,7 +43,7 @@ class CodeEditor extends React.Component {
             <Editor
               value={this.state.code}
               onValueChange={code => { this.props.onChange(code); this.setState({ code })} }
-              highlight={code => highlight(code, languages.python)}
+              highlight={code => highlight(code, this.state.language)}
               padding={10}
               tabSize={4}
               selectionColor="green"

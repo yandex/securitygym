@@ -53,5 +53,3 @@ def process():
             products = bill_process(xml_content)
             return render_template("bill/report.html", products=products, total_cost=calculate_total_cost(products))
     return render_template("bill/form.html")
-
-

@@ -11,5 +11,5 @@ bp = Blueprint("admin", __name__, url_prefix="/admin")
 @login_required
 def users_list():
     db = get_db()
-    users = db.execute("SELECT * FROM user").fetchall()
+    users = db.execute("SELECT id, username, is_admin FROM user").fetchall()
     return render_template('admin/users_list.html', users=users)

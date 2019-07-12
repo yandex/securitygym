@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -103,7 +102,14 @@ class CourseContent extends React.Component {
                                 </CardContent>
                                 <CardActions>
                                     <Button size="small" color="primary"
-                                        onClick={() => { this.props.history.push(course.url); }}
+                                        onClick={() => { 
+                                            if (this.props.match.params.hasOwnProperty('courseSlug')) {
+                                                this.props.history.push('/courses/' + this.props.match.params.courseSlug 
+                                                    + '/' + course.slug);
+                                            } else {
+                                                this.props.history.push('/courses/' + course.slug);
+                                            } 
+                                        }}
                                     >
                                         View
                                     </Button>

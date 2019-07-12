@@ -10,10 +10,22 @@ services:
       - ./ui/react-ui:/app
       - node_modules:/app/node_modules
     restart: always
+  check-executor:
+    build:
+      context: check_executor
+      dockerfile: Dockerfile.dev
+    networks:
+      - web_nw
+    volumes:
+      - ./check_executor/src:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
   api:
     build:
       context: api
       dockerfile: Dockerfile.dev
+    depends_on:
+      - check-executor
     networks:
       - web_nw
     volumes:

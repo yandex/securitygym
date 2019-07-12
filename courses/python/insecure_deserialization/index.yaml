@@ -1,2 +1,13 @@
 title: Insecure Deserialization
 abstract: Insecure Deserialization
+language: python
+profile: python
+run_checks: PYTHONPATH=courses/python/ python3 courses/python/insecure_deserialization/check.py
+vulnerable_code_file: vuln_app/vuln_config.py
+excluded_files:
+  - vuln_app/patched_config.py
+  - vuln_app/__pycache__/
+  - tests/__pycache__/
+  - tests/.pytest_cache/
+  - description/
+  - index.yaml
