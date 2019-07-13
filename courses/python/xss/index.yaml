@@ -1,0 +1,14 @@
+title: XSS
+abstract: Cross Site Scripting
+language: python
+profile: python
+run_checks: PYTHONPATH=courses/python/ python3 courses/python/xss/check.py
+vulnerable_code_file: vuln_app/vuln_guestbook.py
+excluded_files:
+  - vuln_app/patched_guestbook.py
+  - vuln_app/static/style.css
+  - vuln_app/__pycache__/
+  - tests/__pycache__/
+  - tests/.pytest_cache/
+  - description/
+  - index.yaml

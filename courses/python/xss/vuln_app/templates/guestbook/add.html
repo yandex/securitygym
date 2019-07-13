@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Add Payment{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" required></textarea>
+        <input type="submit" value="Add message">
+    </form>
+{% endblock %}
