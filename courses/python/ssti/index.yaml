@@ -1,0 +1,14 @@
+title: SSTI
+abstract: Server-Side Template Injection
+language: python
+profile: python
+run_checks: PYTHONPATH=courses/python/ python3 courses/python/ssti/check.py
+vulnerable_code_file: vuln_app/vuln_badge_generator.py
+excluded_files:
+  - vuln_app/patched_badge_generator.py
+  - vuln_app/static/style.css
+  - vuln_app/__pycache__/
+  - tests/__pycache__/
+  - tests/.pytest_cache/
+  - description/
+  - index.yaml

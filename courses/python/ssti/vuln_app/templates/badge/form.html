@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Generator{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="username">Username</label>
+        <input type="input" name="username" id="username" required />
+        <input type="submit" value="Generate">
+    </form>
+{% endblock %}
