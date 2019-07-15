@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Send Money{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="amount">Amount</label>
+        <input type="number" name="amount" id="amount" value="0" step="0.01" required>
+        <label for="to_user_id">To user</label>
+        <select name="to_user_id" id="to_user_id">
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Add payment">
+    </form>
+{% endblock %}

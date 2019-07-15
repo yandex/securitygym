@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}My payments{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h3>Balance: {{ balance }}</h3>
+    <table>
+        <tr><th>ID</th><th>From</th><th>To</th><th>Amount</th><th>Created at</th></tr>
+        {% for payment in payments %}
+        <tr>
+            <td>{{ payment.id }}</td>
+            <td>{{ payment.from_username }}</td>
+            <td>{{ payment.to_username }}</td>
+            <td>{{ payment.amount }}</td>
+            <td>{{ payment.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('payments.send') }}">Send money</a>
+{% endblock %}
