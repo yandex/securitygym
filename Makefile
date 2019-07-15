@@ -9,3 +9,11 @@ devrun:
 .PHONY: imagesbuild
 imagesbuild:
 	docker build -t security-gym-python -f images/python/Dockerfile .
+
+.PHONY: prodbuild
+prodbuild:
+	docker-compose -f docker-compose.prod.yaml build
+
+.PHONY: prodrun
+prodrun:
+	docker-compose -f docker-compose.prod.yaml up

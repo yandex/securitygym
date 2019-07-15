@@ -1,0 +1,47 @@
+version: '3'
+services:
+  ui:
+    build:
+      context: ui
+      dockerfile: Dockerfile.prod
+    networks:
+      - web_nw
+    volumes:
+      - static-ui-content:/app/build
+  check-executor:
+    build:
+      context: check_executor
+      dockerfile: Dockerfile.prod
+    networks:
+      - web_nw
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile.prod
+    depends_on:
+      - check-executor
+    networks:
+      - web_nw
+    volumes:
+      - ./courses:/courses
+  proxy:
+    build:
+      context: proxy
+      dockerfile: Dockerfile.prod
+    depends_on:
+      - ui
+      - api
+    ports:
+      - "80:80"
+    networks:
+      - web_nw
+    volumes:
+      - static-ui-content:/ui
+networks:
+  web_nw:
+    driver: bridge
+volumes:
+  static-ui-content:
+    
