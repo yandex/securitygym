@@ -5,10 +5,20 @@ from flask import url_for
 from flask import redirect
 from flask import render_template
 
-from idor.vuln_app.auth import login_required
+import functools
+
 from idor.vuln_app.db import get_db
 
 bp = Blueprint("payments", __name__)
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for("auth.login"))
+        return view(**kwargs)
+    return wrapped_view
 
 
 @bp.route("/")
