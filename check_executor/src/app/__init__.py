@@ -21,6 +21,8 @@ def create_app():
         check_result = check(r.get('profile', ''), r.get('command', ''), files)
         is_success = check_result['exit_code'] == 0
         debug_console = check_result['stdout'] if check_result['stdout'] else check_result['stderr']
+        if check_result['oom_killed']: debug_console += "\nError: Out Of Memory".encode('utf-8')
+        if check_result['timeout']: debug_console += "\nError: Timeout".encode('utf-8')
         message = 'Congratulation! You have solved this task!' if is_success else 'Some tests failed. Try harder:)'
         return jsonify({
             'success': is_success,

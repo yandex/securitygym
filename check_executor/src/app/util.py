@@ -7,7 +7,7 @@ def check(profile, command, files):
             epicbox.Profile('python', 'security-gym-python')
         ]
     )
-    limits = {'cputime': 1, 'memory': 64}
+    limits = {'cputime': 10, 'memory': 128}
     result = epicbox.run(profile,
                          command,
                          files=files, limits=limits)
