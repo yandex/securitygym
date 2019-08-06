@@ -4,3 +4,4 @@
 *.sqlite
 __pycache__/
 *.pyc
+db_data/

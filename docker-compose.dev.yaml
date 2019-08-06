@@ -1,5 +1,11 @@
 version: '3'
 services:
+  db:
+    image: "postgres:11"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - web_nw
   ui:
     build:
       context: ui
@@ -26,6 +32,7 @@ services:
       dockerfile: Dockerfile.dev
     depends_on:
       - check-executor
+      - db
     networks:
       - web_nw
     volumes:
@@ -49,4 +56,5 @@ networks:
     driver: bridge
 volumes:
   node_modules:
+  db_data:
     
