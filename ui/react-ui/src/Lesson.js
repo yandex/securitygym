@@ -125,6 +125,7 @@ class Lesson extends React.Component {
                     <Grid container xs={12} spacing={12} className={classes.buttonPane}>
                         <Grid item xs={6}>
                             <Button variant="outlined" color="primary" className={classes.button}
+                                disabled={!this.props.isLogged}
                                 onClick={() => {
                                     this.checkCode();
                                     }}

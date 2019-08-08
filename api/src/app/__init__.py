@@ -1,8 +1,9 @@
 from flask import Flask
 
 from app import settings
-
+from app import auth
 from app import courses
+from app import db
 
 
 def create_app():
@@ -13,6 +14,10 @@ def create_app():
         SECRET_KEY = settings.SECRET_KEY
     )
 
+    app.register_blueprint(auth.bp)
     app.register_blueprint(courses.bp)
+
+    with app.app_context():
+        db.init_db()
 
     return app

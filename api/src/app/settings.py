@@ -13,3 +13,9 @@ if not COURSES_PATH:
 CHECK_EXECUTOR_URL = os.getenv("CHECK_EXECUTOR_URL", None)
 if not CHECK_EXECUTOR_URL:
     CHECK_EXECUTOR_URL = 'http://check-executor:5000/run_check'
+
+DB_HOST = os.getenv("DB_HOST", 'db')
+DB_PORT = os.getenv("DB_PORT", 5432)
+DB_USER = os.getenv("DB_USER", 'postgres')
+DB_PASSWORD = os.getenv("DB_USER", 'postgres')
+DB_NAME = os.getenv("DB_NAME", "gym")

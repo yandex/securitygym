@@ -3,6 +3,7 @@ from flask import jsonify
 from flask import abort
 from flask import request
 
+from app.auth import login_required
 from app.courses.util import is_name_valid_for_directory
 from app.courses.util import courses_from_path
 from app.courses.util import course_info_from_path
@@ -44,6 +45,7 @@ def lesson_content(course_slug, lesson_slug):
 
 
 @bp.route('/<string:course_slug>/lessons/<string:lesson_slug>/check', methods=['POST'])
+@login_required
 def lesson_check_code(course_slug, lesson_slug):
     if not is_name_valid_for_directory(course_slug) or not is_name_valid_for_directory(lesson_slug):
         abort(404)
