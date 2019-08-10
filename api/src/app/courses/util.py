@@ -171,5 +171,6 @@ def lesson_check_execute(course_name, lesson_name, code):
         if g.user['uid']:
             cursor = get_db().cursor()
             cursor.execute("INSERT INTO completed_lessons (uid, course, lesson) "
-                           "VALUES (%s, %s, %s)", (g.user['uid'], course_name, lesson_name))
+                           "VALUES (%s, %s, %s) ON CONFLICT (uid, course, lesson) DO NOTHING ",
+                           (g.user['uid'], course_name, lesson_name))
     return result
