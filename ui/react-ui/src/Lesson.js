@@ -3,6 +3,13 @@ import { withStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+import HomeIcon from '@material-ui/icons/Home';
+import DoneIcon from '@material-ui/icons/Done';
 
 import CodeEditor from "./CodeEditor";
 import Markdown from "./Markdown";
@@ -41,6 +48,10 @@ class Lesson extends React.Component {
     constructor() {
         super();
         this.state = {
+            'title': '',
+            'course_title': '',
+            'course_slug': '',
+            'solved': false,
             'initial_code': '',
             'vuln_code': '',
             'description': '',
@@ -76,6 +87,7 @@ class Lesson extends React.Component {
             return response.json();
         }).then(data => {
             this.setState({
+                solved: data.success,
                 debug_message: data.message, 
                 debug_console: data.console,
                 show_debug_message: true,
@@ -89,6 +101,10 @@ class Lesson extends React.Component {
             return response.json();
         }).then(lessonInfo => {
             this.setState({
+                'title': lessonInfo['title'],
+                'course_title': lessonInfo['course_title'],
+                'course_slug': lessonInfo['course_slug'],
+                'solved': lessonInfo['solved'],
                 'initial_code': lessonInfo['vulnerable_code'],
                 'vuln_code': lessonInfo['vulnerable_code'],
                 'description': lessonInfo['description'],
@@ -115,6 +131,18 @@ class Lesson extends React.Component {
         <div>
             <Grid container spacing={12}>
                 <Grid item xs={4} className={classes.lessonPane}>
+                    <Breadcrumbs aria-label="breadcrumb">
+                        <Link component={RouterLink} to='/'>
+                            <HomeIcon /> 
+                        </Link>
+                        <Link component={RouterLink} to={'/courses/'+this.state.course_slug}>
+                            {this.state.course_title}
+                        </Link>
+                        <Typography color="textPrimary">
+                            {this.state.title}
+                        </Typography>
+                        {this.state.solved && <DoneIcon />}
+                    </Breadcrumbs>
                     <Markdown className={classes.markdown} source={this.state.description}/>
                 </Grid>
                 <Grid container item xs={8} spacing={12}>
@@ -185,4 +213,6 @@ class Lesson extends React.Component {
     }
 }
 
-export default withStyles(styles)(Lesson);
+const LessonWithRouter = withRouter(Lesson);
+
+export default withStyles(styles)(withRouter(Lesson));

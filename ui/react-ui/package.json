@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "dependencies": {
     "@material-ui/core": "^4.0.0-rc.0",
+    "@material-ui/icons": "^4.2.1",
     "prismjs": "1.15.0",
     "react": "16.8.0",
     "react-dom": "16.8.0",

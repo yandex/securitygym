@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Login extends React.Component {
     constructor(props){
@@ -83,7 +85,7 @@ class Login extends React.Component {
                 </Button>
                 <Grid container>
                     <Grid item>
-                        <Link href="/register">
+                        <Link component={RouterLink} to="/register">
                             {"Don't have an account? Sign Up"}
                         </Link>
                     </Grid>
@@ -93,4 +95,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

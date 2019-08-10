@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import DoneIcon from '@material-ui/icons/Done';
 
 const COMMON_TITLE = 'Security Courses';
 const COMMON_ABSTRACT = 'Choose your specialization';
@@ -94,7 +95,7 @@ class CourseContent extends React.Component {
                             <Card>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        {course.title}
+                                        {course.title} {course.solved && <DoneIcon/>}
                                     </Typography>
                                     <Typography>
                                         {course.abstract}
