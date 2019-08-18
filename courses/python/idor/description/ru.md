@@ -11,6 +11,16 @@ Insecure Direct Object Reference (Небезопасная прямая ссыл
 ## Задание
 
 Данный код содержит IDOR в одном из методов. Найди и исправь уязвимость, не меняя поведение программы.
+Все платежи хранятся в таблице payment:
+```sql
+CREATE TABLE payment (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, -- идентификатор платежа
+    user_id INTEGER NOT NULL, -- идентификатор пользователя, который сделал платеж
+    amount DECIMAL(10,2) NOT NULL, -- количество переведенных средств
+    description TEXT, -- комментарий к платежу
+    FOREIGN KEY (user_id) REFERENCES user (id)
+);
+```
 
 ### Дополнительная информация
 
