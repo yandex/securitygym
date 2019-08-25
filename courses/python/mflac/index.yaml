@@ -1,5 +1,6 @@
 title: MFLAC
 abstract: Missing Functional Level Access Controls
+logo_path: mflac.png
 language: python
 profile: python
 run_checks: PYTHONPATH=courses/python/ python3 courses/python/mflac/check.py

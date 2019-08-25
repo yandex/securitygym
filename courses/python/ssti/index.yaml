@@ -1,5 +1,6 @@
 title: SSTI
 abstract: Server-Side Template Injection
+logo_path: ssti.png
 language: python
 profile: python
 run_checks: PYTHONPATH=courses/python/ python3 courses/python/ssti/check.py

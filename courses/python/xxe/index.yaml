@@ -2,6 +2,7 @@ title: XXE
 abstract: XML External Entiti (XXE) Processing
 language: python
 profile: python
+logo_path: xxe.png
 run_checks: PYTHONPATH=courses/python/ python3 courses/python/xxe/check.py
 vulnerable_code_file: vuln_app/vuln_bill.py
 excluded_files:

@@ -4,8 +4,10 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import DoneIcon from '@material-ui/icons/Done';
 
 const COMMON_TITLE = 'Security Courses';
@@ -93,28 +95,36 @@ class CourseContent extends React.Component {
                     {this.state.content.map(course => (
                         <Grid item key={course.slug} xs={12} sm={6} md={4}>
                             <Card>
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {course.title} {course.solved && <DoneIcon/>}
-                                    </Typography>
-                                    <Typography>
-                                        {course.abstract}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button size="small" color="primary"
-                                        onClick={() => { 
-                                            if (this.props.match.params.hasOwnProperty('courseSlug')) {
-                                                this.props.history.push('/courses/' + this.props.match.params.courseSlug 
-                                                    + '/' + course.slug);
-                                            } else {
-                                                this.props.history.push('/courses/' + course.slug);
-                                            } 
+                                <CardActionArea
+                                    onClick={() => { 
+                                        if (this.props.match.params.hasOwnProperty('courseSlug')) {
+                                            this.props.history.push('/courses/' + this.props.match.params.courseSlug 
+                                                + '/' + course.slug);
+                                        } else {
+                                            this.props.history.push('/courses/' + course.slug);
+                                        } 
+                                    }}
+                                    style={{
+                                        height: "376px"
+                                    }}
+                                >
+                                    <CardMedia 
+                                        image={"/api/"+course.logo}
+                                        title={course.title}
+                                        style={{
+                                            maxHeight: "256px",
+                                            height: "256px"
                                         }}
-                                    >
-                                        View
-                                    </Button>
-                                </CardActions>
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {course.title} {course.solved && <DoneIcon/>}
+                                        </Typography>
+                                        <Typography>
+                                            {course.abstract}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
                             </Card>
                         </Grid>
                     ))}

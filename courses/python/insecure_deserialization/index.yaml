@@ -1,5 +1,6 @@
 title: Insecure Deserialization
 abstract: Insecure Deserialization
+logo_path: insecure_deserialization.png
 language: python
 profile: python
 run_checks: PYTHONPATH=courses/python/ python3 courses/python/insecure_deserialization/check.py

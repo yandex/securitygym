@@ -1,5 +1,6 @@
 title: IDOR
 abstract: Insecure Direct Object Reference
+logo_path: idor.png
 language: python
 profile: python
 run_checks: PYTHONPATH=courses/python/ python3 courses/python/idor/check.py

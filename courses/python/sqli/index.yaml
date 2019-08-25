@@ -1,5 +1,6 @@
 title: Injection
 abstract: Injection (SQL injection)
+logo_path: sqli.png
 language: python
 profile: python
 run_checks: PYTHONPATH=courses/python/ python3 courses/python/sqli/check.py

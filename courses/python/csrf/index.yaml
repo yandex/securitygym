@@ -1,5 +1,6 @@
 title: CSRF
 abstract: Cross Site Request Forgery
+logo_path: csrf.png
 language: python
 profile: python
 run_checks: PYTHONPATH=courses/python/ python3 courses/python/csrf/check.py

@@ -12,7 +12,11 @@ from app.settings import CHECK_EXECUTOR_URL
 
 
 def is_name_valid_for_directory(name):
-    return re.match("^[A-Za-z0-9_-]*$", name)
+    return re.match("^[-A-Za-z0-9_]*$", name)
+
+
+def is_name_valid_for_filename(name):
+    return re.match("^[-A-Za-z0-9_.]*$", name)
 
 
 def get_info_from_index_yaml(dir_path):
@@ -38,7 +42,11 @@ def courses_from_path():
     for name in os.listdir(COURSES_PATH):
         # list all subdirectories from courses
         if os.path.isdir(os.path.join(COURSES_PATH, name)) and is_name_valid_for_directory(name):
-            course = {"slug": name, "url": url_for("courses.course_content", course_slug=name)}
+            course = {
+                "slug": name,
+                "url": url_for("courses.course_content", course_slug=name),
+                "logo": url_for("courses.course_logo", course_slug=name)
+            }
             course_path = os.path.join(COURSES_PATH, name)
             course_description = get_info_from_index_yaml(course_path)
             course.update(course_description)
@@ -55,7 +63,10 @@ def courses_from_path():
 def course_info_from_path(course_name):
     if not is_name_valid_for_directory(course_name):
         return dict()
-    course = {"slug": course_name, "url": url_for("courses.course_content", course_slug=course_name)}
+    course = {
+        "slug": course_name,
+        "url": url_for("courses.course_content", course_slug=course_name)
+    }
     course_path = os.path.join(COURSES_PATH, course_name)
     course_description = get_info_from_index_yaml(course_path)
     course.update(course_description)
@@ -77,8 +88,11 @@ def course_content_from_path(course_name):
     if os.path.isdir(course_path):
         for name in os.listdir(course_path):
             if os.path.isdir(os.path.join(course_path, name)) and is_name_valid_for_directory(name):
-                lesson = {"slug": name, "url": url_for("courses.lesson_content",
-                                                       course_slug=course_name, lesson_slug=name)}
+                lesson = {
+                    "slug": name,
+                    "url": url_for("courses.lesson_content", course_slug=course_name, lesson_slug=name),
+                    "logo": url_for("courses.lesson_logo", course_slug=course_name, lesson_slug=name)
+                }
                 lesson_path = os.path.join(course_path, name)
                 lesson_description = get_info_from_index_yaml(lesson_path)
                 lesson.update(lesson_description)
@@ -174,3 +188,40 @@ def lesson_check_execute(course_name, lesson_name, code):
                            "VALUES (%s, %s, %s) ON CONFLICT (uid, course, lesson) DO NOTHING ",
                            (g.user['uid'], course_name, lesson_name))
     return result
+
+
+def course_logo_from_path(course_name):
+    if not is_name_valid_for_directory(course_name):
+        return None
+    course_info = course_info_from_path(course_name)
+    course_path = os.path.join(COURSES_PATH, course_name)
+
+    if 'logo_path' in course_info:
+        logo_path = os.path.join(course_path, course_info['logo_path'])
+        if os.path.isfile(logo_path):
+            return logo_path
+    return None
+
+
+def lesson_logo_from_path(course_name, lesson_name):
+    if not is_name_valid_for_directory(course_name) or not is_name_valid_for_directory(lesson_name):
+        return None
+    lesson_path = os.path.join(COURSES_PATH, course_name, lesson_name)
+    lesson_info = get_info_from_index_yaml(lesson_path)
+
+    if 'logo_path' in lesson_info:
+        logo_path = os.path.join(lesson_path, lesson_info['logo_path'])
+        if os.path.isfile(logo_path):
+            return logo_path
+    return None
+
+
+def lesson_image_path(course_name, lesson_name, image_name):
+    if not is_name_valid_for_directory(course_name) or not is_name_valid_for_directory(lesson_name) \
+            or not is_name_valid_for_filename(image_name):
+        return None
+    img_path = os.path.join(COURSES_PATH, course_name, lesson_name, 'img', image_name)
+    if os.path.isfile(img_path):
+        return img_path
+    else:
+        return None

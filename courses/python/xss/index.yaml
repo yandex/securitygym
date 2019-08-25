@@ -1,5 +1,6 @@
 title: XSS
 abstract: Cross Site Scripting
+logo_path: xss.png
 language: python
 profile: python
 run_checks: PYTHONPATH=courses/python/ python3 courses/python/xss/check.py
