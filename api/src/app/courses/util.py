@@ -165,7 +165,7 @@ def lesson_check_execute(course_name, lesson_name, code):
                     is_excluded = True
                     break
             if not is_excluded:
-                files.append({'name': file_path, 'content': open(file_path).read()})
+                files.append({'name': file_path, 'content': open(file_path, encoding="utf8", errors='ignore').read()})
     files.append({
         'name': os.path.join(COURSES_PATH, course_name, lesson_name, lesson_info.get('vulnerable_code_file', '')),
         'content': code
