@@ -2,13 +2,12 @@ import React from "react";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import DoneIcon from '@material-ui/icons/Done';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const COMMON_TITLE = 'Security Courses';
 const COMMON_ABSTRACT = 'Choose your specialization';
@@ -104,9 +103,6 @@ class CourseContent extends React.Component {
                                             this.props.history.push('/courses/' + course.slug);
                                         } 
                                     }}
-                                    style={{
-                                        height: "376px"
-                                    }}
                                 >
                                     <CardMedia 
                                         image={"/api/"+course.logo}
@@ -116,13 +112,24 @@ class CourseContent extends React.Component {
                                             height: "256px"
                                         }}
                                     />
-                                    <CardContent>
+                                    <CardContent
+                                        style={{
+                                            maxHeight: "120px",
+                                            height: "120px"
+                                        }}
+                                    >
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {course.title} {course.solved && <DoneIcon/>}
                                         </Typography>
                                         <Typography>
                                             {course.abstract}
                                         </Typography>
+                                    </CardContent>
+                                    <CardContent>
+                                        <LinearProgress
+                                            variant="determinate" 
+                                            value={course.progress} 
+                                        />
                                     </CardContent>
                                 </CardActionArea>
                             </Card>

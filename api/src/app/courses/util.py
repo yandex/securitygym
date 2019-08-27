@@ -51,11 +51,14 @@ def courses_from_path():
             course_description = get_info_from_index_yaml(course_path)
             course.update(course_description)
             course['solved'] = False
+            course['progress'] = 0
             if name in course_lessons_completed:
                 total_lessons = len([i for i in os.listdir(course_path)
                                      if os.path.isdir(os.path.join(course_path, i)) and is_name_valid_for_directory(i)])
                 if total_lessons == course_lessons_completed[name]:
                     course['solved'] = True
+                if total_lessons > 0:
+                    course['progress'] = 100 * course_lessons_completed[name] / total_lessons
             courses.append(course)
     return courses
 
@@ -97,6 +100,7 @@ def course_content_from_path(course_name):
                 lesson_description = get_info_from_index_yaml(lesson_path)
                 lesson.update(lesson_description)
                 lesson['solved'] = name in solved_lessons
+                lesson['progress'] = 100 if lesson['solved'] else 0
                 lessons.append(lesson)
     return lessons
 

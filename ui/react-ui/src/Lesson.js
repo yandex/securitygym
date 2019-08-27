@@ -213,6 +213,4 @@ class Lesson extends React.Component {
     }
 }
 
-const LessonWithRouter = withRouter(Lesson);
-
 export default withStyles(styles)(withRouter(Lesson));
