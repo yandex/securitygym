@@ -31,3 +31,33 @@ def get_users_all_statistics():
         if uid in statistics_table:
             statistics_table[uid]['courses'][course_name] = course_progress_number
     return statistics_table
+
+
+def get_users_for_course_statistics(course_slug):
+    statistics_table = OrderedDict()
+    cursor = get_db().cursor()
+    cursor.execute(" SELECT users.uid, users.username, COUNT(users.uid) as total_lessons_count " +
+                   " FROM completed_lessons " +
+                   " JOIN users ON users.uid = completed_lessons.uid "
+                   " WHERE completed_lessons.course=%s " +
+                   " GROUP BY users.uid "
+                   " ORDER BY total_lessons_count DESC ", (course_slug,))
+    for statistics_row in cursor.fetchall():
+        uid = statistics_row[0]
+        username = statistics_row[1]
+        total_lessons_count = statistics_row[2]
+        statistics_table[uid] = {'uid': uid,
+                                 'username': username,
+                                 'total_lessons_count': total_lessons_count,
+                                 'lessons': {}}
+    cursor.execute(" SELECT users.uid, completed_lessons.lesson "
+                   " FROM completed_lessons "
+                   " JOIN users ON users.uid = completed_lessons.uid "
+                   " WHERE completed_lessons.course=%s "
+                   " ORDER BY users.uid DESC", (course_slug,))
+    for statistics_row in cursor.fetchall():
+        uid = statistics_row[0]
+        lesson_name = statistics_row[1]
+        if uid in statistics_table:
+            statistics_table[uid]['lessons'][lesson_name] = True
+    return statistics_table

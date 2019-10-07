@@ -1,8 +1,12 @@
 from flask import Blueprint
 from flask import jsonify
+from flask import abort
 
 from app.statistics.util import get_users_all_statistics
+from app.statistics.util import get_users_for_course_statistics
 from app.courses.util import courses_from_path
+from app.courses.util import course_content_from_path
+from app.courses.util import is_name_valid_for_directory
 
 bp = Blueprint('statistics', __name__, url_prefix='/statistics')
 
@@ -35,4 +39,28 @@ def all_statistics():
     return jsonify({
         'statistics_header': courses,
         'statistics_content': statistics_table,
+    })
+
+
+@bp.route('/<string:course_slug>', methods=['GET'])
+def course_statistics(course_slug):
+    if not is_name_valid_for_directory(course_slug):
+        abort(404)
+    users_table = get_users_for_course_statistics(course_slug)
+    lessons = course_content_from_path(course_slug)
+    statistics_table = []
+    for row in users_table.values():
+        statistics_row = {
+            'uid': row['uid'],
+            'username': row['username'],
+            'lessons': {},
+        }
+        for lesson in lessons:
+            statistics_row['lessons'][lesson['slug']] = {
+                'progress': lesson['slug'] in row['lessons'] and row['lessons'][lesson['slug']] == True,
+            }
+        statistics_table.append(statistics_row)
+    return jsonify({
+        'statistics_header': lessons,
+        'statistics_content': statistics_table
     })

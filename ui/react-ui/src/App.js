@@ -154,6 +154,7 @@ class App extends Component {
                             } />
                             <Route exact path='/register' component={Register} />
                             <Route exact path='/statistics' component={Statistics} />
+                            <Route exact path='/statistics/:courseSlug' component={Statistics} />
                         </Switch>
                     </div>
                 </Router>
