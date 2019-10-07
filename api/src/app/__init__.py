@@ -3,6 +3,7 @@ from flask import Flask
 from app import settings
 from app import auth
 from app import courses
+from app import statistics
 from app import db
 
 
@@ -16,6 +17,7 @@ def create_app():
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(courses.bp)
+    app.register_blueprint(statistics.bp)
 
     with app.app_context():
         db.init_db()

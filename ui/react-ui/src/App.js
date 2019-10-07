@@ -9,19 +9,22 @@ import CourseContent from './CourseContent';
 import Lesson from './Lesson';
 import Login from './Login';
 import Register from './Register';
+import Statistics from './Statistics';
 
 class Nav extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            menuOpen: false
+            menuOpen: false,
+            mainMenuOpen: false,
         }
     }
 
     logout() {
         this.setState({
-            menuOpen: false
+            menuOpen: false,
+            mainMenuOpen: false,
         });
         fetch('/api/auth/logout').then(() => {
             this.props.checkLoginStatus();
@@ -33,7 +36,31 @@ class Nav extends Component {
             <div>
                 <AppBar position="relative">
                     <Toolbar>
-                        <Button color="inherit" component={Link} to={'/'}>Security Gym</Button>
+                        <div>
+                            <Menu
+                                id="main-menu"
+                                open={this.state.mainMenuOpen}
+                                onClose={() => {this.setState({mainMenuOpen: false})}}
+                                getContentAnchorEl={null}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                            >
+                                <MenuItem component={Link} to={'/'} onClick={() => {this.setState({mainMenuOpen: false})}}>
+                                    Home
+                                </MenuItem>
+                                <MenuItem component={Link} to={'/statistics'} onClick={() => {this.setState({mainMenuOpen: false})}}>
+                                    Statistics
+                                </MenuItem>
+                            </Menu>
+                            <Button color="inherit" onClick={() => {this.setState({mainMenuOpen: true})}}>Security Gym</Button>
+                        </div>
+                        
                         <span style={{marginLeft: "auto"}}>
                         {!this.props.isLogged && (
                             <div>
@@ -126,6 +153,7 @@ class App extends Component {
                                 props => <Login {...props} checkLoginStatus={this.checkLoginStatus}/>
                             } />
                             <Route exact path='/register' component={Register} />
+                            <Route exact path='/statistics' component={Statistics} />
                         </Switch>
                     </div>
                 </Router>

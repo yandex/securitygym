@@ -52,9 +52,10 @@ def courses_from_path():
             course.update(course_description)
             course['solved'] = False
             course['progress'] = 0
+            total_lessons = len([i for i in os.listdir(course_path)
+                                 if os.path.isdir(os.path.join(course_path, i)) and is_name_valid_for_directory(i)])
+            course['total_lessons'] = total_lessons
             if name in course_lessons_completed:
-                total_lessons = len([i for i in os.listdir(course_path)
-                                     if os.path.isdir(os.path.join(course_path, i)) and is_name_valid_for_directory(i)])
                 if total_lessons == course_lessons_completed[name]:
                     course['solved'] = True
                 if total_lessons > 0:
