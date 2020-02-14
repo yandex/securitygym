@@ -5,6 +5,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import CourseContent from './CourseContent';
 import Lesson from './Lesson';
 import Login from './Login';
@@ -36,29 +44,17 @@ class Nav extends Component {
             <div>
                 <AppBar position="relative">
                     <Toolbar>
-                        <div>
-                            <Menu
-                                id="main-menu"
-                                open={this.state.mainMenuOpen}
-                                onClose={() => {this.setState({mainMenuOpen: false})}}
-                                getContentAnchorEl={null}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'left',
-                                    }}
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'left',
-                                    }}
-                            >
-                                <MenuItem component={Link} to={'/'} onClick={() => {this.setState({mainMenuOpen: false})}}>
-                                    Home
-                                </MenuItem>
-                                <MenuItem component={Link} to={'/statistics'} onClick={() => {this.setState({mainMenuOpen: false})}}>
-                                    Statistics
-                                </MenuItem>
-                            </Menu>
-                            <Button color="inherit" onClick={() => {this.setState({mainMenuOpen: true})}}>Security Gym</Button>
+                        <IconButton
+                            color="inherit"
+                            onClick={() => {this.setState({mainMenuOpen: true})}}
+                            style = {this.state.mainMenuOpen ? {'display': 'none'} : {}}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <div
+                            style = {this.state.mainMenuOpen ? {'paddingLeft': '192px'} : {}}
+                        >
+                            <Button color="inherit" component={Link} to={'/'}>Security Gym</Button>
                         </div>
                         
                         <span style={{marginLeft: "auto"}}>
@@ -92,6 +88,27 @@ class Nav extends Component {
                         </span>
                     </Toolbar>
                 </AppBar>
+                <Drawer
+                    variant="persistent"
+                    anchor="left"
+                    open={this.state.mainMenuOpen}
+                >
+                    <div
+                        style={{'width': '192px'}}
+                    >
+                        <IconButton
+                            onClick={() => {this.setState({mainMenuOpen: false})}}
+                        >
+                            <ChevronLeftIcon />
+                        </IconButton>
+                        <Divider />
+                        <List>
+                            <ListItem button component={Link} to={'/statistics'}>
+                                <ListItemText primary="Statistics" />
+                            </ListItem>
+                        </List>
+                    </div>
+                </Drawer>
             </div>
         )
     }
