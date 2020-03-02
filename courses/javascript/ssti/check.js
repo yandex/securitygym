@@ -17,8 +17,5 @@ fs.readdirSync(testDir).filter(function(file) {
 });
 
 mocha.run(function(failures) {
-    console.log('FROM mocha.run');
     process.exit(failures);
 });
-
-console.log('SUCCESS');
