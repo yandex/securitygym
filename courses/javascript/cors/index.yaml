@@ -1,0 +1,10 @@
+title: CORS
+abstract: Cross-Origin Resource Sharing
+logo_path: cors.png
+language: javascript
+profile: javascript
+run_checks: NODE_PATH=/app/node_modules node courses/javascript/cors/check.js
+vulnerable_code_file: app.js
+excluded_files:
+  - description/
+  - index.yaml
