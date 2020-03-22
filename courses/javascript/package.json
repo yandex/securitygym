@@ -9,7 +9,10 @@
     "author": "aleksei-m",
     "dependencies": {
         "express": "^4.13.1",
-        "dot": "^1.1.3"
+        "dot": "^1.1.3",
+        "helmet": "^3.21.3",
+        "csurf": "^1.11.0",
+        "cookie-parser": "^1.4.5"
     },
     "devDependencies": {
         "mocha": "^6.2.2",
