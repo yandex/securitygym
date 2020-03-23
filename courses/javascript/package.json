@@ -14,7 +14,8 @@
         "csurf": "^1.11.0",
         "cookie-parser": "^1.4.5",
         "body-parser": "^1.19.0",
-        "node-html-parser": "^1.2.13"
+        "node-html-parser": "^1.2.13",
+        "serialize-javascript": "^3.0.0"
     },
     "devDependencies": {
         "mocha": "^6.2.2",

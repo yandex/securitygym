@@ -1,0 +1,10 @@
+title: XSS
+abstract: Cross Site Scripting
+logo_path: xss.png
+language: javascript
+profile: javascript
+run_checks: NODE_PATH=/app/node_modules node courses/javascript/xss/check.js
+vulnerable_code_file: app.js
+excluded_files:
+  - description/
+  - index.yaml
