@@ -33,7 +33,7 @@ class Statistics extends React.Component {
                 course => {
                     this.setState({'title': COMMON_TITLE, 'abstract': course.title});
             });
-            fetch('/api/statistics/'+courseSlug).then(function(response){
+            fetch('/api/statistics/courses/'+courseSlug).then(function(response){
                 return response.json();
             }).then(statistics => {
                 this.setState({

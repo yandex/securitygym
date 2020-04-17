@@ -42,7 +42,7 @@ def all_statistics():
     })
 
 
-@bp.route('/<string:course_slug>', methods=['GET'])
+@bp.route('/courses/<string:course_slug>', methods=['GET'])
 def course_statistics(course_slug):
     if not is_name_valid_for_directory(course_slug):
         abort(404)
