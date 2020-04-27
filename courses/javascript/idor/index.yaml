@@ -1,0 +1,10 @@
+title: IDOR
+abstract: Insecure Direct Object Reference
+logo_path: idor.png
+language: javascript
+profile: javascript
+run_checks: NODE_PATH=/app/node_modules node courses/javascript/idor/check.js
+vulnerable_code_file: app.js
+excluded_files:
+  - description/
+  - index.yaml

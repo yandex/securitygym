@@ -6,7 +6,7 @@ var mocha = new Mocha({
     reporter: function () {},
 });
 
-var testDir = 'courses/javascript/cors/test';
+var testDir = 'courses/javascript/xss/test';
 
 fs.readdirSync(testDir).filter(function(file) {
     return file.substr(-3) === '.js';

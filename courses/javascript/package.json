@@ -8,8 +8,16 @@
     },
     "author": "aleksei-m",
     "dependencies": {
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.5",
+        "crypto": "^1.0.1",
+        "csurf": "^1.11.0",
+        "dot": "^1.1.3",
         "express": "^4.13.1",
-        "dot": "^1.1.3"
+        "helmet": "^3.21.3",
+        "node-html-parser": "^1.2.13",
+        "serialize-javascript": "^3.0.0",
+        "sqlite3": "^4.1.1"
     },
     "devDependencies": {
         "mocha": "^6.2.2",
