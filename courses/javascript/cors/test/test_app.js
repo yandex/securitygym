@@ -27,7 +27,6 @@ describe('Application Tests', function() {
             .end(function(err, res) {
                 if (err) {
                     console.log('Functional test failed for ' + validDomain);
-                    console.log(err);
                     throw err;
                 } else {
                     console.log('Function tests success');
