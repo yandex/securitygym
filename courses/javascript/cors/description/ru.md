@@ -13,4 +13,3 @@ Cross-Origin Resource Sharing (CORS) - механизм обмена данны�
 ### Дополнительная информация
 
 * https://www.w3.org/TR/cors/
-* https://wiki.yandex-team.ru/security/for/web-developers/cors/ 
