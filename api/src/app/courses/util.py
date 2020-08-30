@@ -198,7 +198,7 @@ def lesson_check_results(course_name, lesson_name, task_id):
     result = r.json()
 
     if result.get('state', '') == 'SUCCESS':
-        if result.get('course', '') == course_name and result.get('lesson_name') == lesson_name:
+        if result.get('course', '') == course_name and result.get('lesson', '') == lesson_name:
             if result['success']:
                 if g.user['uid']:
                     cursor = get_db().cursor()
