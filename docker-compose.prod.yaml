@@ -8,10 +8,26 @@ services:
       - web_nw
     volumes:
       - static-ui-content:/app/build
+  redis:
+    image: "redis:5.0.4-stretch"
+    ports:
+      - "6379"
+    networks:
+      - web_nw
   check-executor:
     build:
       context: check_executor
       dockerfile: Dockerfile.prod
+    networks:
+      - web_nw
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  check-executor-worker:
+    build:
+      context: check_executor
+      dockerfile: Dockerfile.prod
+    entrypoint: celery
+    command: -A run.celery worker --loglevel=info
     networks:
       - web_nw
     volumes:
