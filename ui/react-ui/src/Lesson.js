@@ -86,12 +86,29 @@ class Lesson extends React.Component {
         }).then(function(response){
             return response.json();
         }).then(data => {
-            this.setState({
-                solved: data.success,
-                debug_message: data.message, 
-                debug_console: data.console,
-                show_debug_message: true,
-                show_waiting_message: false});
+            (async () => {
+                let taskId = data.task_id;
+                let state = 'PENDING';
+                console.log(state);
+                while (state === 'PENDING' || state === 'PROGRESS') {
+                    console.log(state);
+                    let response = await fetch('/api/courses/' + this.props.match.params.courseSlug 
+                    + '/lessons/' + this.props.match.params.lessonSlug + '/check/' + taskId);
+                    let taskData = await response.json();
+                    state = taskData.state;
+                    if (state !== 'PENDING' && state !== 'PROGRESS') {
+                        this.setState({
+                            solved: taskData.success,
+                            debug_message: taskData.message, 
+                            debug_console: taskData.console,
+                            show_debug_message: true,
+                            show_waiting_message: false});
+                        
+                    }
+                }
+            })();
+            
+            
         });
     }
 

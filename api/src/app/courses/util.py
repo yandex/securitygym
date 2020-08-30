@@ -8,7 +8,7 @@ from flask import g
 
 from app.db import get_db
 from app.settings import COURSES_PATH
-from app.settings import CHECK_EXECUTOR_URL
+from app.settings import CHECK_EXECUTOR_HOST
 
 
 def is_name_valid_for_directory(name):
@@ -180,18 +180,31 @@ def lesson_check_execute(course_name, lesson_name, code):
     # run command
     run_checks = lesson_info.get('run_checks', '')
     # request to check_executor
-    r = requests.post(CHECK_EXECUTOR_URL, json={
+    r = requests.post(CHECK_EXECUTOR_HOST+'run_check', json={
+        'course': course_name,
+        'lesson': lesson_name,
         'files': files,
         'profile': profile,
         'command': run_checks
     })
     result = r.json()
-    if result['success']:
-        if g.user['uid']:
-            cursor = get_db().cursor()
-            cursor.execute("INSERT INTO completed_lessons (uid, course, lesson) "
-                           "VALUES (%s, %s, %s) ON CONFLICT (uid, course, lesson) DO NOTHING ",
-                           (g.user['uid'], course_name, lesson_name))
+    return result
+
+
+def lesson_check_results(course_name, lesson_name, task_id):
+    if not is_name_valid_for_directory(course_name) or not is_name_valid_for_directory(lesson_name):
+        return {}
+    r = requests.get(CHECK_EXECUTOR_HOST+'check_results/'+task_id)
+    result = r.json()
+
+    if result.get('state', '') == 'SUCCESS':
+        if result.get('course', '') == course_name and result.get('lesson_name') == lesson_name:
+            if result['success']:
+                if g.user['uid']:
+                    cursor = get_db().cursor()
+                    cursor.execute("INSERT INTO completed_lessons (uid, course, lesson) "
+                                    "VALUES (%s, %s, %s) ON CONFLICT (uid, course, lesson) DO NOTHING ",
+                                    (g.user['uid'], course_name, lesson_name))
     return result
 
 

@@ -1,3 +1,5 @@
 Flask == 1.0.2
 epicbox == 1.0.0
 gunicorn == 19.9.0
+celery==4.4.1
+redis

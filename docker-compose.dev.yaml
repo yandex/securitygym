@@ -6,6 +6,12 @@ services:
       - db_data:/var/lib/postgresql/data
     networks:
       - web_nw
+  redis:
+    image: "redis:5.0.4-stretch"
+    ports:
+      - "6379"
+    networks:
+      - web_nw
   ui:
     build:
       context: ui
@@ -26,6 +32,19 @@ services:
       - ./check_executor/src:/app
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
+    depends_on:
+      - redis
+  check-executor-worker:
+    build:
+      context: check_executor
+      dockerfile: Dockerfile.dev
+    entrypoint: celery
+    command: -A run.celery worker --loglevel=info
+    volumes:
+      - ./check_executor/src:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web_nw
   api:
     build:
       context: api
