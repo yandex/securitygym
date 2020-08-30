@@ -14,6 +14,7 @@ from app.courses.util import course_info_from_path
 from app.courses.util import course_content_from_path
 from app.courses.util import lesson_content_from_path
 from app.courses.util import lesson_check_execute
+from app.courses.util import lesson_check_results
 from app.courses.util import lesson_logo_from_path
 from app.courses.util import lesson_image_path
 
@@ -80,6 +81,14 @@ def lesson_check_code(course_slug, lesson_slug):
     result = lesson_check_execute(course_slug, lesson_slug, r['code'])
     return jsonify(result)
 
+
+@bp.route('/<string:course_slug>/lessons/<string:lesson_slug>/check/<string:task_id>', methods=['GET'])
+@login_required
+def lesson_check_status(course_slug, lesson_slug, task_id):
+    if not is_name_valid_for_directory(course_slug) or not is_name_valid_for_directory(lesson_slug):
+        abort(404)
+    result = lesson_check_results(course_slug, lesson_slug, task_id)
+    return jsonify(result)
 
 @bp.route('/images/<string:course_slug>/<string:lesson_slug>/<string:image_name>', methods=['GET'])
 def lesson_image(course_slug, lesson_slug, image_name):

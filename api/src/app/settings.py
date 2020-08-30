@@ -10,9 +10,9 @@ COURSES_PATH = os.getenv("SECURITY_GYM_COURSES_PATH", None)
 if not COURSES_PATH:
     COURSES_PATH = os.path.abspath("../../courses")
 
-CHECK_EXECUTOR_URL = os.getenv("CHECK_EXECUTOR_URL", None)
-if not CHECK_EXECUTOR_URL:
-    CHECK_EXECUTOR_URL = 'http://check-executor:5000/run_check'
+CHECK_EXECUTOR_HOST = os.getenv("CHECK_EXECUTOR_HOST", None)
+if not CHECK_EXECUTOR_HOST:
+    CHECK_EXECUTOR_HOST = 'http://check-executor:5000/'
 
 DB_HOST = os.getenv("DB_HOST", 'db')
 DB_PORT = os.getenv("DB_PORT", 5432)
