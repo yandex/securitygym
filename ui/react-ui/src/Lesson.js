@@ -44,6 +44,10 @@ const styles = theme => ({
       }
   });
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 class Lesson extends React.Component {
     constructor() {
         super();
@@ -89,9 +93,9 @@ class Lesson extends React.Component {
             (async () => {
                 let taskId = data.task_id;
                 let state = 'PENDING';
-                console.log(state);
+                
                 while (state === 'PENDING' || state === 'PROGRESS') {
-                    console.log(state);
+                    await sleep(1000);
                     let response = await fetch('/api/courses/' + this.props.match.params.courseSlug 
                     + '/lessons/' + this.props.match.params.lessonSlug + '/check/' + taskId);
                     let taskData = await response.json();
