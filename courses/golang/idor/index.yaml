@@ -1,0 +1,10 @@
+title: IDOR
+abstract: Insecure Direct Object Reference
+logo_path: idor.png
+language: golang
+profile: golang
+run_checks: cp -R courses/golang/idor/src/idor $GOPATH/src && go test idor
+vulnerable_code_file: src/idor/server.go
+excluded_files:
+  - description/
+  - index.yaml

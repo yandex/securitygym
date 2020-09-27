@@ -1,0 +1,10 @@
+title: Path traversal
+abstract: Path traversal
+logo_path: path_traversal.png
+language: golang
+profile: golang
+run_checks: cp -R courses/golang/path_traversal/src/path_traversal $GOPATH/src && go test path_traversal
+vulnerable_code_file: src/path_traversal/server.go
+excluded_files:
+  - description/
+  - index.yaml
