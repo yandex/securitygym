@@ -1,0 +1,10 @@
+title: Injection
+abstract: Injection (SQL injection)
+logo_path: sqli.png
+language: golang
+profile: golang
+run_checks: cp -R courses/golang/sqli/src/sqli $GOPATH/src && go test sqli
+vulnerable_code_file: src/sqli/server.go
+excluded_files:
+  - description/
+  - index.yaml

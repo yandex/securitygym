@@ -1,0 +1,10 @@
+title: XSS
+abstract: Cross Site Scripting
+logo_path: xss.png
+language: golang
+profile: golang
+run_checks: cp -R courses/golang/xss/src/xss $GOPATH/src && go test xss
+vulnerable_code_file: src/xss/server.go
+excluded_files:
+  - description/
+  - index.yaml
