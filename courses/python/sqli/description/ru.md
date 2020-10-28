@@ -17,4 +17,7 @@ items = db.execute('select something from table where param=?', (param,))
 
 ### Дополнительная информация
 
-* https://www.owasp.org/index.php/Top_10-2017_A1-Injection
+* https://owasp.org/www-community/attacks/SQL_Injection
+* https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+* https://cheatsheetseries.owasp.org/cheatsheets/Query_Parameterization_Cheat_Sheet.html
+* https://portswigger.net/web-security/sql-injection

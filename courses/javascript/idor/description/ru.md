@@ -15,4 +15,4 @@ Insecure Direct Object Reference (Небезопасная прямая ссыл
 ### Дополнительная информация
 
 * https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html
-* https://www.owasp.org/index.php/Top_10_2013-A4-Insecure_Direct_Object_References
+* https://portswigger.net/web-security/access-control/idor

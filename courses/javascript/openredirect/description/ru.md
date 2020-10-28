@@ -12,4 +12,4 @@
 
 ### Дополнительная информация:
 
-* http://www.owasp.org/index.php/Open_redirect
+* https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html

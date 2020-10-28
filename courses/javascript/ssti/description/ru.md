@@ -13,4 +13,4 @@ Server-Side Template Injection (SSTI) - вид атак на современн�
 
 ### Дополнительная информация
 
-* https://nvisium.com/blog/2015/12/07/injecting-flask.html
+* https://portswigger.net/research/server-side-template-injection

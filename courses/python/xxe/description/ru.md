@@ -43,3 +43,4 @@ XXE может привести к раскрытию конфиденциаль
 ### Дополнительная информация
 
 * https://www.owasp.org/index.php/XML_External_Entity_%28XXE%29_Processing
+* https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html

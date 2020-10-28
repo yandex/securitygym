@@ -24,5 +24,5 @@ if ($http_referer !~ "^https?://([^/]+\.)?website\.com/"){
 
 ### Дополнительная информация
 
-* https://www.owasp.org/index.php/Clickjacking
+* https://owasp.org/www-community/attacks/Clickjacking
 * https://learn.javascript.ru/clickjacking

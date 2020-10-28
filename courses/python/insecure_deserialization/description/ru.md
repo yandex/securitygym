@@ -17,7 +17,8 @@
 
 ### Дополнительная информация
 
-* https://www.owasp.org/index.php/Top_10-2017_A8-Insecure_Deserialization
+* https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization
+* https://portswigger.net/web-security/deserialization
 * https://www.kevinlondon.com/2015/08/15/dangerous-python-functions-pt2.html
 * https://blog.nelhage.com/2011/03/exploiting-pickle/
 * https://xerosecurity.com/wordpress/exploiting-python-deserialization-vulnerabilities/

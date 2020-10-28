@@ -15,4 +15,4 @@ _Подсказка: Информация о текущем пользовате
 
 ### Дополнительная информация
 
-* https://www.owasp.org/index.php/Top_10_2013-A7-Missing_Function_Level_Access_Control
+* https://blog.detectify.com/2016/07/13/owasp-top-10-missing-function-level-access-control-7/
