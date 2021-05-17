@@ -41,4 +41,3 @@ To deploy this project run
 ```bash
   make prodrun
 ```
-  
