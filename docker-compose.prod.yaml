@@ -1,5 +1,15 @@
 version: '3'
 services:
+  db:
+    image: "postgres:11"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=gym
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - web_nw
   ui:
     build:
       context: ui
@@ -37,7 +47,8 @@ services:
       context: api
       dockerfile: Dockerfile.prod
     depends_on:
-      - check-executor
+        - check-executor
+        - db
     networks:
       - web_nw
     volumes:
@@ -60,4 +71,5 @@ networks:
     driver: bridge
 volumes:
   static-ui-content:
+  db_data:
     
