@@ -1,7 +1,7 @@
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 RUN apk update && apk upgrade && pip install -U pip
-RUN apk add --update --no-cache g++ gcc libxslt-dev py-lxml
+RUN apk add --update --no-cache g++ gcc libxml2-dev libxslt-dev python3-dev libffi-dev openssl-dev make
 
 COPY courses/python/requirements.txt /
 

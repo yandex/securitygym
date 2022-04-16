@@ -1,5 +1,5 @@
-Flask == 1.0.2
-werkzeug == 0.15.4
+Flask == 2.0.3
+werkzeug == 2.0.3
 pytest == 5.0.0
 lxml == 4.3.3
 defusedxml == 0.6.0
